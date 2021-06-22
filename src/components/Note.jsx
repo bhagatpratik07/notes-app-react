@@ -1,21 +1,26 @@
 import React from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 
-const Note = ({ id, text, date, deleteNote, editNote }) => {
+export default function Note({ title, text, date, id, deleteNote, setIsEdit }) {
   return (
     <div className="note">
+      <input
+        className="title-input"
+        value={title}
+        placeholder="Title"
+        onChange={(e) => e.target.value}
+      />
+
       <span>{text}</span>
       <div className="footer">
-        <p>{date}</p>
-        <MdEdit className="delete" onClick={() => editNote()} />
+        <span>{date} </span>
+        <MdEdit onClick={() => setIsEdit()} />
         <MdDelete
+          className="delete-btn"
+          size="1.3rem"
           onClick={() => deleteNote(id)}
-          className="delete"
-          size="1.3em"
         />
       </div>
     </div>
   );
-};
-
-export default Note;
+}
