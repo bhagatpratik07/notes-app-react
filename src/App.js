@@ -2,27 +2,29 @@ import React, { useState } from "react";
 import "./App.css";
 import Notes from "./components/Notes";
 import { nanoid } from "nanoid";
-import Search from "./components/Search";
 import Header from "./components/Header";
+import Search from "./components/Search";
 import EditNote from "./components/EditNote";
 
 function App() {
   const [notes, setNotes] = useState([
     {
       id: nanoid(),
-      text: "This is a note",
-      date: "12/5/21",
+      title: "Note Title",
+      text: "create a new note to get started...",
+      date: "06/19/21",
     },
   ]);
+  const [darkTheme, setDarkTheme] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const [isEdit, setIsEdit] = useState(false);
 
-  const [searchText, setSearchText] = useState("");
-  const [darkMode, setDarkMode] = useState(false);
-  const [editNote, setEditNote] = useState(false);
-  const saveNote = (text) => {
+  const saveNote = (text, title) => {
     const date = new Date();
     const newNote = {
       id: nanoid(),
       date: date.toLocaleDateString(),
+      title: title,
       text: text,
     };
     const newNotes = [...notes, newNote];
@@ -34,42 +36,26 @@ function App() {
     setNotes(newNotes);
   };
 
-  const toggleEditNote = () => {
-    setEditNote(!editNote);
-  };
-
-  // edit
-  const editNote1 = () => {
-    setEditNote(!editNote);
-    console.log("edit");
-  };
-
-  if (editNote) {
-    return (
-      <div className="App">
-        <EditNote
-          saveNote={saveNote}
-          editNote={editNote1}
-          toggleEditNote={toggleEditNote}
-          id={notes.id}
-        />
-      </div>
-    );
+  function toggleEdit() {
+    setIsEdit(!isEdit);
   }
-  return (
-    <div className={`${darkMode && "dark-mode"}`}>
-      <div className="App">
-        <Header toggleDarkMode={setDarkMode} />
-        <Search searchText={setSearchText} />
 
+  if (isEdit) {
+    <EditNote />;
+  }
+
+  return (
+    <div className={`${darkTheme && "dark-theme"}`}>
+      <div className="App">
+        <Header setDarkTheme={setDarkTheme} />
+        <Search searchValue={setSearchValue} />
         <Notes
           notes={notes.filter((note) =>
-            note.text.toLowerCase().includes(searchText)
+            note.text.toLocaleLowerCase().includes(searchValue)
           )}
           saveNote={saveNote}
           deleteNote={deleteNote}
-          editNote={editNote1}
-          setEditNote={setEditNote}
+          toggleEdit={toggleEdit}
         />
       </div>
     </div>
