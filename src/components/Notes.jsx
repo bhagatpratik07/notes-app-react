@@ -1,22 +1,22 @@
 import React from "react";
 import AddNote from "./AddNote";
 import Note from "./Note";
-const Notes = ({ notes, saveNote, deleteNote, editNote }) => {
+
+export default function Notes({ notes, saveNote, deleteNote }) {
   return (
     <div className="notes">
-      <AddNote saveNote={saveNote} deleteNote={deleteNote} />
+      <AddNote saveNote={saveNote} />
       {notes.map((note) => (
         <Note
-          key={note.id}
+          title={note.title}
           text={note.text}
-          id={note.id}
           date={note.date}
+          id={note.id}
+          key={note.id}
           deleteNote={deleteNote}
-          editNote={editNote}
         />
       ))}
     </div>
   );
-};
+}
 
-export default Notes;
