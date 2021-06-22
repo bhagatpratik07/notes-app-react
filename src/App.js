@@ -4,7 +4,7 @@ import Notes from "./components/Notes";
 import { nanoid } from "nanoid";
 import Header from "./components/Header";
 import Search from "./components/Search";
-import EditNote from "./components/EditNote";
+
 
 function App() {
   const [notes, setNotes] = useState([
@@ -17,7 +17,7 @@ function App() {
   ]);
   const [darkTheme, setDarkTheme] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const [isEdit, setIsEdit] = useState(false);
+
 
   const saveNote = (text, title) => {
     const date = new Date();
@@ -36,13 +36,7 @@ function App() {
     setNotes(newNotes);
   };
 
-  function toggleEdit() {
-    setIsEdit(!isEdit);
-  }
-
-  if (isEdit) {
-    <EditNote />;
-  }
+  
 
   return (
     <div className={`${darkTheme && "dark-theme"}`}>
