@@ -1,7 +1,7 @@
 import React from "react";
-import { MdDelete, MdEdit } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 
-export default function Note({ title, text, date, id, deleteNote, setIsEdit }) {
+export default function Note({ title, text, date, id, deleteNote }) {
   return (
     <div className="note">
       <input
@@ -14,7 +14,7 @@ export default function Note({ title, text, date, id, deleteNote, setIsEdit }) {
       <span>{text}</span>
       <div className="footer">
         <span>{date} </span>
-        <MdEdit onClick={() => setIsEdit()} />
+        
         <MdDelete
           className="delete-btn"
           size="1.3rem"
