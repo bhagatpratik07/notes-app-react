@@ -49,7 +49,6 @@ function App() {
           )}
           saveNote={saveNote}
           deleteNote={deleteNote}
-          toggleEdit={toggleEdit}
         />
       </div>
     </div>
