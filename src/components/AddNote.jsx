@@ -1,39 +1,54 @@
 import React, { useState } from "react";
+import { MdSave } from "react-icons/md";
 
-const AddNote = ({ saveNote }) => {
-  const [noteText, setNoteText] = useState("");
-  const characterLimit = 200;
+export default function AddNote({ saveNote }) {
+  const [titleValue, setTitleValue] = useState("");
+  const [noteValue, setNoteValue] = useState("");
+
+  const limit = 200;
+
+  const handleTitleChange = (e) => {
+    if (limit - e.target.value.length >= 0) {
+      setTitleValue(e.target.value);
+    }
+  };
 
   const handleChange = (e) => {
-    if (characterLimit - e.target.value.length >= 0) {
-      setNoteText(e.target.value);
+    if (limit - e.target.value.length >= 0) {
+      setNoteValue(e.target.value);
+      //   console.log("text");
     }
   };
 
   const handleSave = () => {
-    if (noteText.trim().length > 0) {
-      saveNote(noteText);
+    if (noteValue.trim().length > 0) {
+      saveNote(noteValue, titleValue);
+    } else {
+      alert("note cannot be blank");
     }
-    setNoteText("");
+    setTitleValue("");
+    setNoteValue("");
   };
-
   return (
-    <div className="note new">
+    <div className="add note">
+      <input
+        className="add-input"
+        placeholder="Title"
+        value={titleValue}
+        onChange={handleTitleChange}
+      />
+
       <textarea
-        cols="10"
-        rows="8"
-        placeholder="Add a new note..."
-        value={noteText}
+        placeholder="Take a note..."
+        cols="8"
+        rows="5"
+        value={noteValue}
         onChange={handleChange}
-      ></textarea>
+      />
       <div className="footer">
-        <span>{characterLimit - noteText.length} remaining</span>
-        <button className="button" onClick={handleSave}>
-          Save
-        </button>
+        <span>{limit - noteValue.length} remaining</span>
+        <MdSave className="save-btn" size="1.3rem" onClick={handleSave} />
       </div>
     </div>
   );
-};
-
-export default AddNote;
+}
