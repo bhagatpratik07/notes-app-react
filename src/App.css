@@ -1,7 +1,9 @@
 * {
   margin: 0;
-  font-family: "Roboto", sans-serif;
-  font-size: large;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: medium;
+  font-weight: bold;
 }
 
 .App {
@@ -14,7 +16,8 @@
 }
 
 .note {
-  background: rgb(250, 250, 73);
+  background-color: yellow;
+  color: black;
   border-radius: 10px;
   padding: 1rem;
   min-height: 150px;
@@ -24,19 +27,23 @@
   white-space: pre-wrap;
 }
 
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .notes {
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
-.note.new {
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.delete-btn {
+  cursor: pointer;
+}
+
+.add {
   background-color: aqua;
 }
 
@@ -44,27 +51,47 @@ textarea {
   background-color: aqua;
   border: none;
   resize: none;
+  padding-top: 15px;
 }
+
 textarea:focus {
   outline: none;
 }
 
-.button {
-  background-color: white;
+.save-btn {
+  cursor: pointer;
+}
+
+.add-input {
+  background-color: aqua;
+  border-right: none;
+  border-left: none;
   border: none;
-  border-radius: 15px;
-  padding: 5px 10px;
+  border-color: black;
+  border-top: none;
+  font-weight: bold;
+  font-size: larger;
 }
 
-.button:hover {
-  cursor: pointer;
-  background-color: rgb(233, 233, 233);
+.add-input:focus {
+  outline: none;
 }
 
-.delete {
-  cursor: pointer;
+.edit-input {
+  background-color: yellow;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.dark-theme {
+  background-color: black;
+  color: white;
+}
 .search {
   display: flex;
   align-items: center;
@@ -84,35 +111,17 @@ textarea:focus {
   outline: none;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
+.theme-btn {
+  cursor: pointer;
 }
 
-.theme {
-  cursor: pointer;
-  background-color: rgb(233, 233, 233);
-  border-radius: 5px;
+.title-input {
+  background-color: yellow;
   border: none;
+  font-weight: bold;
+  font-size: larger;
 }
 
-.dark-mode {
-  background-color: black;
-}
-
-.dark-mode h1 {
-  color: white;
-}
-
-.edit {
-  padding: 20px;
-}
-
-.save-btn {
-  cursor: pointer;
-}
-.edit-btn {
-  cursor: pointer;
+.title-input:focus {
+  outline: none;
 }
