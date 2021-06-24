@@ -30,6 +30,30 @@ function App() {
     const newNotes = [...notes, newNote];
     setNotes(newNotes);
   };
+  
+  useEffect(() => {
+    const savedNotes = JSON.parse(localStorage.getItem("notes-app-data"));
+
+    if (savedNotes) {
+      setNotes(savedNotes);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("notes-app-data", JSON.stringify(notes));
+  }, [notes]);
+
+  const saveNote = (text, title) => {
+    const date = new Date();
+    const newNote = {
+      id: nanoid(),
+      date: date.toLocaleDateString(),
+      title: title,
+      text: text,
+    };
+    const newNotes = [...notes, newNote];
+    setNotes(newNotes);
+  };
 
   const deleteNote = (id) => {
     const newNotes = notes.filter((note) => note.id !== id);
